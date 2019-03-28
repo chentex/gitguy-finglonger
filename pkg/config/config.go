@@ -8,20 +8,25 @@ package config
 // DoneColumn id in github
 // BacklogReleaseSquadColumn id in github
 type Config struct {
-	TriagedColumnID             int `yaml:"triagedColumnID,omitempty"`
-	BlockedColumnID             int `yaml:"blockedColumnID,omitempty"`
-	InProgressColumnID          int `yaml:"inProgressColumnID,omitempty"`
-	ProgressColumnID            int `yaml:"progressColumnID,omitempty"`
-	DoneColumnID                int `yaml:"doneColumnID,omitempty"`
-	BacklogReleaseSquadColumnID int `yaml:"backlogReleaseSquadColumnID,omitempty"`
-	Server                      struct {
-		ServerAddr   string `yaml:"address,omitempty"`
+	Server struct {
+		Address      string `yaml:"address,omitempty"`
 		ReadTimeout  int    `yaml:"readTimeout,omitempty"`
 		WriteTimeout int    `yaml:"writeTimeout,omitempty"`
 	} `yaml:"server,omitempty"`
 	Github struct {
-		APIURL string `yaml:"apiURL"`
-		Token  string `yaml:"token"`
-		Secret string `yaml:"secret"`
+		APIURL string `yaml:"apiURL,omitempty"`
+		Token  string `yaml:"token,omitempty"`
+		Secret string `yaml:"secret,omitempty"`
 	} `yaml:"github,omitempty"`
+	Caasp struct {
+		Repositories []string `yaml:"repositories,omitempty"`
+		ProjectRules struct {
+			MoveCards []struct {
+				Action      string `yaml:"action,omitempty"`
+				Match       string `yaml:"match,omitempty"`
+				From        []int  `yaml:"from,omitempty"`
+				Destination int    `yaml:"destination,omitempty"`
+			} `yaml:"moveCards,omitempty"`
+		} `yaml:"projectRules,omitempty"`
+	} `yaml:"caasp,omitempty"`
 }

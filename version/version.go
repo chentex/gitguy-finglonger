@@ -1,4 +1,4 @@
-package api
+package version
 
 import (
 	"encoding/json"
@@ -10,8 +10,8 @@ var (
 	version string
 )
 
-// VersionHandler returns version of the current api deployed
-func (a *API) VersionHandler(w http.ResponseWriter, r *http.Request) {
+// Handler returns version of the current api deployed
+func Handler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		w.WriteHeader(http.StatusNotFound)
 		return

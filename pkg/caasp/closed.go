@@ -1,4 +1,4 @@
-package api
+package caasp
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ import (
 )
 
 // ClosedIssue when an issue is closed it should move to the Release Squad Board
-func (a *API) ClosedIssue(issue *model.Issue, w http.ResponseWriter) {
+func ClosedIssue(issue *model.Issue, w http.ResponseWriter) {
 	for _, l := range issue.Issue.Labels {
 		if l.Name == "wontfix" {
 			return

@@ -13,6 +13,10 @@ Manage your github project automatically, reacting to actions on your issues and
 
 Download the latest version from [releases](https://github.com/SUSE/gitguy-finglonger/releases/latest).
 
+### Using Docker
+
+`docker-compose up -d`
+
 ## Test
 
 Clone repository into your $GOPATH. You can also use go get:

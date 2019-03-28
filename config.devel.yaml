@@ -1,10 +1,4 @@
 ---
-triagedColumnID: 0
-blockedColumnID: 0
-inProgressColumnID: 0
-progressColumnID: 0
-doneColumnID: 0
-backlogReleaseSquadColumnID: 0
 server:
   address: ":8191"
   readTimeout: 10
@@ -13,3 +7,47 @@ github:
   apiURL: "https://api.github.com"
   token: ""
   secret: ""
+caasp:
+  repositories:
+    - kubic-salt-security-fixes
+    - kubic-velum-security-fixes
+    - kubic-caasp-container-manifests-security-fixes
+    - caasp-automation
+  projectRules:
+    moveCards:
+      - action: labeled
+        match: Blocked
+        from: 
+          - 1111111
+          - 1111111
+        destination: 1111111
+      - action: labeled
+        match: needinfo
+        from: 
+          - 1111111
+          - 1111111
+        destination: 1111111
+      - action: labeled
+        match: BugSquad
+        from:
+        destination: 1111111
+      - action: unlabeled
+        match: needinfo
+        from:
+          - 1111111
+        destination: 1111111
+      - action: assigned
+        match:
+        from:
+          - 1111111
+          - 1111111
+        destination: 1111111
+      - action: unassigned
+        match:
+        from:
+          - 1111111
+        destination: 1111111
+      - action: closed
+        match:
+        from:
+        destination: 1111111

@@ -1,4 +1,4 @@
-package api
+package caasp
 
 import (
 	"errors"
@@ -9,7 +9,7 @@ import (
 )
 
 // LabelActions moves an issue in the project to a columns depending on the label that has been set.
-func (a *API) LabelActions(issue *model.Issue, w http.ResponseWriter) {
+func LabelActions(issue *model.Issue, w http.ResponseWriter) {
 	switch issue.Label.Name {
 	case "Blocked", "needinfo":
 		possibleColumns := []int{a.Config.InProgressColumnID}
@@ -45,7 +45,7 @@ func (a *API) LabelActions(issue *model.Issue, w http.ResponseWriter) {
 }
 
 // UnlabelActions moves an issue in the project to a columns depending on the label that has been unset.
-func (a *API) UnlabelActions(issue *model.Issue, w http.ResponseWriter) {
+func UnlabelActions(issue *model.Issue, w http.ResponseWriter) {
 	switch issue.Label.Name {
 	case "needinfo":
 		possibleColumns := []int{a.Config.BlockedColumnID}
@@ -72,7 +72,7 @@ func (a *API) UnlabelActions(issue *model.Issue, w http.ResponseWriter) {
 }
 
 // setLabels sets Labels to the issue
-func (a *API) setLabels(issue *model.Issue, labels []string) error {
+func setLabels(issue *model.Issue, labels []string) error {
 	url := fmt.Sprintf(`%s/repos/%s/%s/issues/%d/labels`, a.Config.Github.APIURL, issue.Repository.Owner.Login, issue.Repository.Name, issue.Issue.Number)
 	labelsPayload := model.LabelsPayload{
 		Labels: labels,
@@ -85,7 +85,7 @@ func (a *API) setLabels(issue *model.Issue, labels []string) error {
 }
 
 // removeLabel sets a Label to the issue
-func (a *API) removeLabel(issue *model.Issue, label string) error {
+func removeLabel(issue *model.Issue, label string) error {
 	url := fmt.Sprintf(`%s/repos/%s/%s/issues/%d/labels/%s`, a.Config.Github.APIURL, issue.Repository.Owner.Login, issue.Repository.Name, issue.Issue.Number, label)
 	status, b := request("DELETE", url, nil, a.Config.Github.Token)
 	if status != 200 {

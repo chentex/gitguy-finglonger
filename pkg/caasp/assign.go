@@ -1,4 +1,4 @@
-package api
+package caasp
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ import (
 )
 
 // MoveIssueInProgress when an issue has been assigned to someone
-func (a *API) MoveIssueInProgress(issue *model.Issue, w http.ResponseWriter) {
+func MoveIssueInProgress(issue *model.Issue, w http.ResponseWriter) {
 	switch len(issue.Issue.Assignees) > 1 {
 	case false:
 		possibleColumns := []int{a.Config.TriagedColumnID, a.Config.BlockedColumnID}
@@ -41,7 +41,7 @@ func (a *API) MoveIssueInProgress(issue *model.Issue, w http.ResponseWriter) {
 	}
 }
 
-func (a *API) checkLabels(issue *model.Issue) error {
+func checkLabels(issue *model.Issue) error {
 	found := false
 	for _, l := range issue.Issue.Labels {
 		if l.Name == "help wanted" {

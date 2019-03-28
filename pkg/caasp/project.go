@@ -1,4 +1,4 @@
-package api
+package caasp
 
 import (
 	"encoding/json"
@@ -12,7 +12,7 @@ import (
 	"github.com/SUSE/gitguy-finglonger/pkg/github/model"
 )
 
-func (a *API) getNotesByColumns(api string, columns []int) ([]model.NoteInColumns, error) {
+func getNotesByColumns(api string, columns []int) ([]model.NoteInColumns, error) {
 	notes := []model.NoteInColumns{}
 	for _, c := range columns {
 		url := fmt.Sprintf(`%s/projects/columns/%d/cards`, api, c)

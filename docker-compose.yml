@@ -1,0 +1,12 @@
+version: '3'
+services:
+  gitguy:
+    image: gitguy-finglonger:0.1.0 
+    restart: always
+    volumes:
+      - ./config.prod.yaml:/etc/gitguy-finglonger/config.prod.yaml
+    ports:
+      - "8191:8191"
+    entrypoint:
+      - /usr/bin/gitguy-finglonger
+      - --config=/etc/gitguy-finglonger/config.prod.yaml

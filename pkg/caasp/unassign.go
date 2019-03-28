@@ -1,4 +1,4 @@
-package api
+package caasp
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ import (
 )
 
 // MoveIssueBlocked when an issue has been unassigned completely
-func (a *API) MoveIssueBlocked(issue *model.Issue, w http.ResponseWriter) {
+func MoveIssueBlocked(issue *model.Issue, w http.ResponseWriter) {
 	if len(issue.Issue.Assignees) != 0 {
 		return
 	}
